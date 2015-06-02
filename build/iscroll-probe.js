@@ -1,4 +1,4 @@
-/*! iScroll v5.1.3 ~ (c) 2008-2014 Matteo Spinelli ~ http://cubiq.org/license */
+/*! iScroll v5.1.4-globo ~ (c) 2008-2015 Matteo Spinelli ~ http://cubiq.org/license */
 (function (window, document, Math) {
 var rAF = window.requestAnimationFrame	||
 	window.webkitRequestAnimationFrame	||
@@ -258,7 +258,7 @@ function IScroll (el, options) {
 
 		snapThreshold: 0.334,
 
-// INSERT POINT: OPTIONS 
+// INSERT POINT: OPTIONS
 
 		startX: 0,
 		startY: 0,
@@ -318,7 +318,7 @@ function IScroll (el, options) {
 
 // INSERT POINT: NORMALIZATION
 
-	// Some defaults	
+	// Some defaults
 	this.x = 0;
 	this.y = 0;
 	this.directionX = 0;
@@ -335,7 +335,7 @@ function IScroll (el, options) {
 }
 
 IScroll.prototype = {
-	version: '5.1.3',
+	version: '5.1.4-globo',
 
 	_init: function () {
 		this._initEvents();
@@ -766,6 +766,9 @@ IScroll.prototype = {
 			this._transitionTimingFunction(easing.style);
 			this._transitionTime(time);
 			this._translate(x, y);
+			if (time >= 0) {
+				this._execEvent('beforeTransition');
+			}
 		} else {
 			this._animate(x, y, time, easing.fn);
 		}
